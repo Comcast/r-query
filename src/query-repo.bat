@@ -1,0 +1,1 @@
+node %~dp0/query-repo.js %* --workingDirectory=%cd%

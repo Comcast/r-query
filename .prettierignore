@@ -1,0 +1,7 @@
+package-lock.json
+coverage
+dist
+distCmd
+node_modules
+tmp
+.gitIgnore.

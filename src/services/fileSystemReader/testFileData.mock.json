@@ -1,0 +1,40 @@
+{
+	"eing-test": [
+		{
+			"fileName": "T:\\eing-test\\package.json",
+			"fileContents": "{\"dependencies\":{}}"
+		},
+		{
+			"fileName": "T:\\eing-test\\readme.md",
+			"fileContents": "# Test File Readme"
+		},
+		{
+			"fileName": "T:\\eing-test\\src\\main.ts",
+			"fileContents": "throw new Error('not implemented')"
+		}
+	],
+	"emc-test": [
+		{
+			"fileName": "T:\\emc-test\\config.json",
+			"fileContents": "{\"dependencies\":{}}"
+		}
+	],
+	"eing-something": [
+		{
+			"fileName": "T:\\eing-something\\package.json",
+			"fileContents": "{\"dependencies\":{}}"
+		},
+		{
+			"fileName": "T:\\eing-something\\readme.md",
+			"fileContents": "# Test File Readme"
+		},
+		{
+			"fileName": "T:\\eing-something\\src\\main.ts",
+			"fileContents": "throw new Error('not implemented')"
+		},
+		{
+			"fileName": "T:\\eing-something\\src\\components\\component.ts",
+			"fileContents": "export class Component{}"
+		}
+	]
+}
