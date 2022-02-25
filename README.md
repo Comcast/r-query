@@ -100,7 +100,7 @@ Select
     repoName,
     fileName
 From
-    /eing-.*/
+    /repo-.*/
 Where
     fileName contains '.spec.ts'
     And

@@ -19,8 +19,8 @@ describe("FileSystemReader", () => {
 
 	runTestOnAllReaders("should read files", async reader => {
 		const tests = [
-			"T:\\eing-test\\package.json",
-			"T:\\eing-something\\src\\components\\component.ts"
+			"T:\\repo-test\\package.json",
+			"T:\\repo-something\\src\\components\\component.ts"
 		];
 
 		for (let i = 0; i < tests.length; i++) {
@@ -31,14 +31,14 @@ describe("FileSystemReader", () => {
 
 	runTestOnAllReaders("should read dir", async reader => {
 		const dir = "T:\\";
-		const expected = ["eing-test", "emc-test", "eing-something"].sort();
+		const expected = ["repo-test", "repo-test", "repo-something"].sort();
 
 		const result = await reader.readDir(dir);
 		expect(result.sort()).toStrictEqual(expected);
 	});
 
 	runTestOnAllReaders("should list files in dir", async reader => {
-		const dir = "T:\\eing-test\\";
+		const dir = "T:\\repo-test\\";
 		const expected = ["package.json", "readme.md"];
 
 		const result = await reader.listFilesInDir(dir);
@@ -46,7 +46,7 @@ describe("FileSystemReader", () => {
 	});
 
 	runTestOnAllReaders("should list dirs in dir", async reader => {
-		const dir = "T:\\eing-test\\";
+		const dir = "T:\\repo-test\\";
 		const expected = ["src"];
 
 		const result = await reader.listDirectoriesInDir(dir);

@@ -71,7 +71,7 @@ describe("QueryExecutor", () => {
 					fieldAlias: "fileName"
 				}
 			],
-			from: ["emc-test"],
+			from: ["repo-test"],
 			where: null
 		};
 
@@ -90,7 +90,7 @@ describe("QueryExecutor", () => {
 					fieldAlias: "fileName"
 				}
 			],
-			from: ["eing-test"],
+			from: ["repo-test"],
 			where: null
 		};
 
@@ -115,7 +115,7 @@ describe("QueryExecutor", () => {
 					fieldAlias: "fileContents"
 				}
 			],
-			from: ["eing-something"],
+			from: ["repo-something"],
 			where: [
 				{
 					field: "file_name",
@@ -129,7 +129,7 @@ describe("QueryExecutor", () => {
 		const result = await executor.execute(query);
 		expect(result).toBeTruthy();
 		expect(result.data.length).toBe(1);
-		expect(result.data[0].repoName).toBe("eing-something");
+		expect(result.data[0].repoName).toBe("repo-something");
 		expect(result.data[0].fileContents).toBeTruthy();
 	});
 

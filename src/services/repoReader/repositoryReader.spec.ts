@@ -13,7 +13,7 @@ describe("RepositoryReader", () => {
 	});
 
 	it("should list repo names", async () => {
-		const expected = ["eing-test", "emc-test", "eing-something"];
+		const expected = ["repo-test", "repo-test", "repo-something"];
 
 		const result = await repoReader.listRepositories().catch(err => {
 			throw new Error(err.errorStackMessages || err.toString());
@@ -22,7 +22,7 @@ describe("RepositoryReader", () => {
 	});
 
 	it("should validate if repositories exist", async () => {
-		const exists = "eing-test";
+		const exists = "repo-test";
 		const notExists = "asfasf";
 
 		const oneExists = await repoReader.repositoryExists(exists);
@@ -33,7 +33,7 @@ describe("RepositoryReader", () => {
 	});
 
 	it("should read file", async () => {
-		const repo = "eing-test";
+		const repo = "repo-test";
 		const file = "package.json";
 
 		const contents = await repoReader.readFile(repo, file).catch(err => {
@@ -43,7 +43,7 @@ describe("RepositoryReader", () => {
 	});
 
 	it("should iterate over repo", async () => {
-		const repo = "eing-test";
+		const repo = "repo-test";
 		const expectedFiles = 3;
 		let visited = 0;
 

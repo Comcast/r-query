@@ -37,7 +37,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "file_name",
@@ -90,7 +90,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "invalid_file_contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "file_name",
@@ -139,7 +139,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "file_name",
@@ -160,7 +160,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "file_name",
@@ -198,7 +198,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "asdfasdfasdfasd",
@@ -219,7 +219,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "bad_file_name",
@@ -275,7 +275,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "file_name",
@@ -296,7 +296,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "file_name",
@@ -334,7 +334,7 @@ describe("QueryValidator", () => {
 						fieldAlias: "file-contents"
 					}
 				],
-				from: ["eing-container"],
+				from: ["repo-container"],
 				where: [
 					{
 						field: "file_name",

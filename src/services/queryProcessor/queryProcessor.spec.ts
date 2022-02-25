@@ -35,14 +35,14 @@ describe("QueryProcessor", () => {
 	});
 
 	it("should parse a query", async () => {
-		const query = "Select filename From eing-something";
+		const query = "Select filename From repo-something";
 		const result = await queryProcessor.process(query).catch(err => {
 			console.warn(`Error in parsing query`, err);
 			throw err;
 		});
 		expect(result).toBeTruthy();
 		expect(result.inputQuery).toBe(query);
-		expect(result.selectedRepositories).toStrictEqual(["eing-something"]);
+		expect(result.selectedRepositories).toStrictEqual(["repo-something"]);
 		expect(result.queryIntermediateForm).toBeTruthy();
 		expect(result.queryResponse).toBeTruthy();
 	});

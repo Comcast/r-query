@@ -20,7 +20,7 @@ describe("CommandLineProgram", () => {
 	it("should run basic queries", async () => {
 		const queries = [
 			"Select repoName, fileName From *",
-			"Select fileName from eing-something"
+			"Select fileName from repo-something"
 		];
 
 		for (let i = 0; i < queries.length; i++) {

@@ -1,39 +1,39 @@
 {
-	"eing-test": [
+	"repo-test": [
 		{
-			"fileName": "T:\\eing-test\\package.json",
+			"fileName": "T:\\repo-test\\package.json",
 			"fileContents": "{\"dependencies\":{}}"
 		},
 		{
-			"fileName": "T:\\eing-test\\readme.md",
+			"fileName": "T:\\repo-test\\readme.md",
 			"fileContents": "# Test File Readme"
 		},
 		{
-			"fileName": "T:\\eing-test\\src\\main.ts",
+			"fileName": "T:\\repo-test\\src\\main.ts",
 			"fileContents": "throw new Error('not implemented')"
 		}
 	],
-	"emc-test": [
+	"repo-test": [
 		{
-			"fileName": "T:\\emc-test\\config.json",
+			"fileName": "T:\\repo-test\\config.json",
 			"fileContents": "{\"dependencies\":{}}"
 		}
 	],
-	"eing-something": [
+	"repo-something": [
 		{
-			"fileName": "T:\\eing-something\\package.json",
+			"fileName": "T:\\repo-something\\package.json",
 			"fileContents": "{\"dependencies\":{}}"
 		},
 		{
-			"fileName": "T:\\eing-something\\readme.md",
+			"fileName": "T:\\repo-something\\readme.md",
 			"fileContents": "# Test File Readme"
 		},
 		{
-			"fileName": "T:\\eing-something\\src\\main.ts",
+			"fileName": "T:\\repo-something\\src\\main.ts",
 			"fileContents": "throw new Error('not implemented')"
 		},
 		{
-			"fileName": "T:\\eing-something\\src\\components\\component.ts",
+			"fileName": "T:\\repo-something\\src\\components\\component.ts",
 			"fileContents": "export class Component{}"
 		}
 	]

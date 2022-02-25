@@ -135,7 +135,7 @@ describe("RqlStringParser", () => {
 			},
 			{
 				input:
-					"Select fileContents From eing-e2e-library Where filename = 'package.json'",
+					"Select fileContents From repo-e2e-library Where filename = 'package.json'",
 				expected: new QueryIntermediateForm({
 					select: [
 						{
@@ -143,7 +143,7 @@ describe("RqlStringParser", () => {
 							fieldAlias: "fileContents"
 						}
 					],
-					from: ["eing-e2e-library"],
+					from: ["repo-e2e-library"],
 					where: [
 						{
 							field: "filename",
