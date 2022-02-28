@@ -108,7 +108,7 @@ Where
         (
             fileContents matches /Injector/i
             Or
-            fileImportStatements matches {/.*/, /@cee-ui/}
+            fileImportStatements matches {/.*/, /@some-lib/}
         )
         Or
         fileImportStatements contains {'SpecialService', 'SpecialModule'}
