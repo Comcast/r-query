@@ -18,8 +18,14 @@ export const GRAMMAR_RULES_PROCESS: ICfgRule[] = [
 		"(left_curly wtsp? [{FULL_ITEM}|{TUPLE}] [wtsp? cma wtsp? [{FULL_ITEM}|{TUPLE}]]* wtsp? right_curly)"
 	],
 	["FROM_ITEM_APPLY", "[field|star|regular_expression]"],
-	["FROM_STATEMENT", "[{FROM_ITEM_APPLY} wtsp? cma wtsp?]* {FROM_ITEM_APPLY}"],
-	["CONDITION_STATEMENT", "field wtsp? comparison wtsp? [{FULL_ITEM}|{TUPLE}]"],
+	[
+		"FROM_STATEMENT",
+		"[{FROM_ITEM_APPLY} wtsp? cma wtsp?]* {FROM_ITEM_APPLY}"
+	],
+	[
+		"CONDITION_STATEMENT",
+		"field wtsp? comparison wtsp? [{FULL_ITEM}|{TUPLE}]"
+	],
 	[
 		"WHERE_STATEMENT_NESTED",
 		"left_paren wtsp* {WHERE_STATEMENT_TOP_LEVEL} wtsp* right_paren"

@@ -6,9 +6,7 @@ export interface IRepositoryReader {
 
 	repositoryExists(...repoNames: Array<string>): Promise<boolean>;
 
-	iterateFilesInRepo(
-		repoName: string
-	): IAsyncIterator<{
+	iterateFilesInRepo(repoName: string): IAsyncIterator<{
 		filename: string;
 		stats: fs.Stats;
 	}>;

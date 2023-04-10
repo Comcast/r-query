@@ -85,28 +85,40 @@ export class StringComparer extends BaseComparer<
 			case "contains":
 				return leftHand.indexOf(`${rightHand}`) > -1;
 			case "matches_grammar":
-				return this.matchGrammar(leftHand, rightHand as [
-					string,
-					string | RegExp
-				][]);
+				return this.matchGrammar(
+					leftHand,
+					rightHand as [string, string | RegExp][]
+				);
 			case "matches":
 				return !!leftHand.match(rightHand as RegExp);
 			case "matches_all":
-				return (rightHand as Array<RegExp>).reduce((bool: boolean, item) => {
-					return bool && !!leftHand.match(item);
-				}, true);
+				return (rightHand as Array<RegExp>).reduce(
+					(bool: boolean, item) => {
+						return bool && !!leftHand.match(item);
+					},
+					true
+				);
 			case "matches_any":
-				return (rightHand as Array<RegExp>).reduce((bool: boolean, item) => {
-					return bool || !!leftHand.match(item);
-				}, false);
+				return (rightHand as Array<RegExp>).reduce(
+					(bool: boolean, item) => {
+						return bool || !!leftHand.match(item);
+					},
+					false
+				);
 			case "contains_all":
-				return (rightHand as Array<string>).reduce((bool: boolean, item) => {
-					return bool && leftHand.indexOf(`${item}`) > -1;
-				}, true);
+				return (rightHand as Array<string>).reduce(
+					(bool: boolean, item) => {
+						return bool && leftHand.indexOf(`${item}`) > -1;
+					},
+					true
+				);
 			case "contains_any":
-				return (rightHand as Array<string>).reduce((bool: boolean, item) => {
-					return bool || leftHand.indexOf(`${item}`) > -1;
-				}, false);
+				return (rightHand as Array<string>).reduce(
+					(bool: boolean, item) => {
+						return bool || leftHand.indexOf(`${item}`) > -1;
+					},
+					false
+				);
 			case "like":
 				//replace sql syntax with regular
 				const originalPattern = rightHand as string;
@@ -122,7 +134,10 @@ export class StringComparer extends BaseComparer<
 						["//", "\\/\\/"]
 					];
 					specialChars.forEach(item => {
-						const regex = new RegExp(`(?<!\\\\)(\\\\\\\\)*${item[0]}`, "g");
+						const regex = new RegExp(
+							`(?<!\\\\)(\\\\\\\\)*${item[0]}`,
+							"g"
+						);
 						pattern = pattern.replace(regex, item[1]);
 					});
 
@@ -139,7 +154,10 @@ export class StringComparer extends BaseComparer<
 					//strip punctuation
 					pattern = pattern.replace(/(\.|\?|\!|\(|\)|,|_)/g, "");
 
-					this.someCache[originalSomePattern] = new RegExp(pattern, "gmi");
+					this.someCache[originalSomePattern] = new RegExp(
+						pattern,
+						"gmi"
+					);
 				}
 				return !!leftHand.match(this.someCache[originalSomePattern]);
 		}

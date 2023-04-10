@@ -11,7 +11,8 @@ import { IComparer } from "../../models/comparer";
 import { QueryProcessorError } from "../../utilities/queryProcessorError/queryProcessorError";
 
 export class QueryIntermediateFormValidator
-	implements IQueryIntermediateFormValidator {
+	implements IQueryIntermediateFormValidator
+{
 	constructor(
 		private fieldTypes: Array<IFieldType>,
 		private comparisons: Array<IComparer<any, any>>,
@@ -86,7 +87,9 @@ export class QueryIntermediateFormValidator
 				}
 				return input.map(item => mapWhere(item));
 			} else if (input !== "and" && input !== "or") {
-				return this.validateSingleWhereStatement(input as ISelectCondition);
+				return this.validateSingleWhereStatement(
+					input as ISelectCondition
+				);
 			} else {
 				return input;
 			}
@@ -117,7 +120,9 @@ export class QueryIntermediateFormValidator
 		condition.field = validEntry.fieldName;
 		const comparison =
 			this.comparisons.find(cp => cp.typeName === validEntry.fieldName) ||
-			this.comparisons.find(cp => cp.typeName === validEntry.primitiveType);
+			this.comparisons.find(
+				cp => cp.typeName === validEntry.primitiveType
+			);
 		if (!comparison) {
 			throw new QueryProcessorError(
 				`There is no valid comparison of type ${condition.comparison} for field type ${field} (thrown by invalid where condition)!`

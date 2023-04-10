@@ -21,7 +21,10 @@ export class RepositoryReader implements IRepositoryReader {
 		return this.fileSystemReader
 			.listDirectoriesInDir(this.rootDir)
 			.catch(err => {
-				throw new QueryProcessorError("Error listing repositories: ", err);
+				throw new QueryProcessorError(
+					"Error listing repositories: ",
+					err
+				);
 			})
 			.then(repoPaths => {
 				return repoPaths.map(rp => {
@@ -38,9 +41,7 @@ export class RepositoryReader implements IRepositoryReader {
 			return bool && repos.indexOf(rn) > -1;
 		}, true);
 	}
-	iterateFilesInRepo(
-		repoName: string
-	): IAsyncIterator<{
+	iterateFilesInRepo(repoName: string): IAsyncIterator<{
 		filename: string;
 		stats: fs.Stats;
 	}> {

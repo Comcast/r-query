@@ -31,7 +31,7 @@ describe("FileSystemReader", () => {
 
 	runTestOnAllReaders("should read dir", async reader => {
 		const dir = "T:\\";
-		const expected = ["repo-test", "repo-test", "repo-something"].sort();
+		const expected = ["repo-test", "repo-test-single", "repo-something"].sort();
 
 		const result = await reader.readDir(dir);
 		expect(result.sort()).toStrictEqual(expected);

@@ -13,7 +13,7 @@ describe("RepositoryReader", () => {
 	});
 
 	it("should list repo names", async () => {
-		const expected = ["repo-test", "repo-test", "repo-something"];
+		const expected = ["repo-test", "repo-test-single", "repo-something"];
 
 		const result = await repoReader.listRepositories().catch(err => {
 			throw new Error(err.errorStackMessages || err.toString());

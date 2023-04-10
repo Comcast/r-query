@@ -24,7 +24,10 @@ describe("QueryProcessor", () => {
 			new RqlStringParser(COMPARERS),
 			new QueryIntermediateFormValidator(FIELD_TYPES, COMPARERS),
 			new QueryExecutor(
-				new RepositoryReader("T:\\", new FileSystemReader(new FsMock())),
+				new RepositoryReader(
+					"T:\\",
+					new FileSystemReader(new FsMock())
+				),
 				FIELD_TYPES,
 				COMPARERS,
 				new AsyncBooleanEvaluator(),

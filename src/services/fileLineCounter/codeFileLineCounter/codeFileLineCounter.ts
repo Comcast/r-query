@@ -10,10 +10,7 @@ export class CodeFileLineCounter implements IFileLineCounter {
 		fileName: string,
 		fileContents: string
 	): Promise<IFileLineStats> {
-		const ext = fileName
-			.split(".")
-			.pop()
-			.toLowerCase();
+		const ext = fileName.split(".").pop().toLowerCase();
 		const map = {
 			ts: "typescript",
 			js: "javascript",

@@ -28,7 +28,9 @@ interface ICachedFile {
 export class CacheFileSystemReader implements IFileSystemReader {
 	private filesListLocked$ = new BehaviorSubject<number>(0);
 	private fileCompare = (a, b) => a.filename.localeCompare(b.filename);
-	private filesList: SortedList<ICachedFile> = new SortedList(this.fileCompare);
+	private filesList: SortedList<ICachedFile> = new SortedList(
+		this.fileCompare
+	);
 
 	private options;
 
@@ -62,7 +64,9 @@ export class CacheFileSystemReader implements IFileSystemReader {
 		this.lockOperations();
 
 		try {
-			const data = await this.rescanDirectoriesFromRoot(this.options.rootDir);
+			const data = await this.rescanDirectoriesFromRoot(
+				this.options.rootDir
+			);
 			this.filesList = data;
 		} finally {
 			this.unlockOperations();
@@ -77,7 +81,9 @@ export class CacheFileSystemReader implements IFileSystemReader {
 				this.options.rootDir,
 				repoName
 			);
-			const repoRoot = path.resolve(this.options.rootDir + "/" + repoName);
+			const repoRoot = path.resolve(
+				this.options.rootDir + "/" + repoName
+			);
 			this.filesList = this.filesList.filter(
 				{
 					filename: repoRoot
@@ -105,27 +111,18 @@ export class CacheFileSystemReader implements IFileSystemReader {
 	}
 
 	async listDirectoriesInDir(directory: string): Promise<string[]> {
-		await this.filesListLocked$
-			.pipe(
-				$isZero,
-				$takeOne
-			)
-			.toPromise();
+		await this.filesListLocked$.pipe($isZero, $takeOne).toPromise();
 
-		const directories = await this.fileSystemReader.listDirectoriesInDir.call(
-			this,
-			directory
-		);
+		const directories =
+			await this.fileSystemReader.listDirectoriesInDir.call(
+				this,
+				directory
+			);
 		return directories;
 	}
 
 	async listFilesInDir(directory: string): Promise<string[]> {
-		await this.filesListLocked$
-			.pipe(
-				$isZero,
-				$takeOne
-			)
-			.toPromise();
+		await this.filesListLocked$.pipe($isZero, $takeOne).toPromise();
 
 		const files = await this.fileSystemReader.listFilesInDir.call(
 			this,
@@ -135,12 +132,7 @@ export class CacheFileSystemReader implements IFileSystemReader {
 	}
 
 	async readDir(dir: string): Promise<string[]> {
-		await this.filesListLocked$
-			.pipe(
-				$isZero,
-				$takeOne
-			)
-			.toPromise();
+		await this.filesListLocked$.pipe($isZero, $takeOne).toPromise();
 
 		if (dir.substring(dir.length - 1) === path.sep) {
 			dir = dir.substring(0, dir.length - 1);
@@ -178,12 +170,7 @@ export class CacheFileSystemReader implements IFileSystemReader {
 	async readDirStats(
 		dir: string
 	): Promise<{ filename: string; stats: fs.Stats; contents: string }[]> {
-		await this.filesListLocked$
-			.pipe(
-				$isZero,
-				$takeOne
-			)
-			.toPromise();
+		await this.filesListLocked$.pipe($isZero, $takeOne).toPromise();
 
 		const originalDir = dir;
 		dir = path.resolve(dir) + path.sep;
@@ -191,18 +178,24 @@ export class CacheFileSystemReader implements IFileSystemReader {
 		const nextDir = path.resolve(originalDir + "#") + path.sep;
 
 		const numDirs = dir.split(path.sep).length;
-		return (this.filesList
-			.filter(
-				{
-					filename: dir,
-					stats: null
-				},
-				{
-					filename: nextDir,
-					stats: null
-				}
-			)
-			.toArray() as { filename: string; stats: fs.Stats; contents: null }[])
+		return (
+			this.filesList
+				.filter(
+					{
+						filename: dir,
+						stats: null
+					},
+					{
+						filename: nextDir,
+						stats: null
+					}
+				)
+				.toArray() as {
+				filename: string;
+				stats: fs.Stats;
+				contents: null;
+			}[]
+		)
 			.filter(file => {
 				return file.filename.split(path.sep).length === numDirs;
 			})
@@ -214,12 +207,7 @@ export class CacheFileSystemReader implements IFileSystemReader {
 	}
 
 	async statFile(filepath: string): Promise<fs.Stats> {
-		await this.filesListLocked$
-			.pipe(
-				$isZero,
-				$takeOne
-			)
-			.toPromise();
+		await this.filesListLocked$.pipe($isZero, $takeOne).toPromise();
 
 		filepath = path.resolve(filepath);
 		const file = this.filesList.find({
@@ -240,12 +228,7 @@ export class CacheFileSystemReader implements IFileSystemReader {
 	}
 
 	async readFile(filename: string): Promise<string> {
-		await this.filesListLocked$
-			.pipe(
-				$isZero,
-				$takeOne
-			)
-			.toPromise();
+		await this.filesListLocked$.pipe($isZero, $takeOne).toPromise();
 
 		const fileEntry = this.filesList.find({
 			filename,
@@ -275,9 +258,7 @@ export class CacheFileSystemReader implements IFileSystemReader {
 		return contents;
 	}
 
-	iterateFilesInDir(
-		dir: string
-	): IAsyncIterator<{
+	iterateFilesInDir(dir: string): IAsyncIterator<{
 		filename: string;
 		stats: fs.Stats;
 	}> {

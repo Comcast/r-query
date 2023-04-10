@@ -71,7 +71,7 @@ describe("QueryExecutor", () => {
 					fieldAlias: "fileName"
 				}
 			],
-			from: ["repo-test"],
+			from: ["repo-test-single"],
 			where: null
 		};
 

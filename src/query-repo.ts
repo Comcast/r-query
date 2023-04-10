@@ -34,7 +34,14 @@ new CmdProgram(
 	(workingDir: string, dontFilter: boolean): IQueryExecutor => {
 		let excludedDirs = [];
 		if (!dontFilter) {
-			excludedDirs = ["node_modules", "dist", ".git", ".vscode", ".vs", "bin"];
+			excludedDirs = [
+				"node_modules",
+				"dist",
+				".git",
+				".vscode",
+				".vs",
+				"bin"
+			];
 		}
 
 		return new QueryExecutor(

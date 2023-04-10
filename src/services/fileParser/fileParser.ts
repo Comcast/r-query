@@ -20,9 +20,12 @@ export class CompositeFileParser implements IFileParser {
 		for (let i = 0; !result && i < this.parsers.length; i++) {
 			try {
 				result = await this.parsers[i].parse(fileName, fileContents);
-			} catch (err) {
+			} catch (err: any) {
 				if (lastErr) {
-					lastErr = new QueryProcessorError(err.message || err.toString(), err);
+					lastErr = new QueryProcessorError(
+						err.message || err.toString(),
+						err
+					);
 				} else {
 					lastErr = err;
 				}

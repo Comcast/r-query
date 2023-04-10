@@ -14,12 +14,16 @@ export class QueryProcessor<QueryType> implements IQueryProcessor<QueryType> {
 		private queryExecutor: IQueryExecutor
 	) {}
 
-	async process(query: QueryType): Promise<IQueryProcessorResponse<QueryType>> {
+	async process(
+		query: QueryType
+	): Promise<IQueryProcessorResponse<QueryType>> {
 		let intermediateForm, validatedQuery, result;
 
 		try {
 			intermediateForm = await this.queryParser.parseInput(query);
-			validatedQuery = await this.queryValidator.validate(intermediateForm);
+			validatedQuery = await this.queryValidator.validate(
+				intermediateForm
+			);
 
 			result = await this.queryExecutor.execute({ ...validatedQuery });
 			return {
@@ -28,13 +32,19 @@ export class QueryProcessor<QueryType> implements IQueryProcessor<QueryType> {
 				selectedRepositories: result.selectedRepositories,
 				queryResponse: result.data
 			};
-		} catch (err) {
-			throw new QueryProcessorError(`Error processing query: ${err}`, err, {
-				inputQuery: query,
-				queryIntermediateForm: validatedQuery,
-				selectedRepositories: result ? result.selectedRepositories : null,
-				queryResponse: result ? result.data : null
-			});
+		} catch (err: any) {
+			throw new QueryProcessorError(
+				`Error processing query: ${err}`,
+				err,
+				{
+					inputQuery: query,
+					queryIntermediateForm: validatedQuery,
+					selectedRepositories: result
+						? result.selectedRepositories
+						: null,
+					queryResponse: result ? result.data : null
+				}
+			);
 		}
 	}
 }

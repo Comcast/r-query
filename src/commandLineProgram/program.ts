@@ -90,9 +90,8 @@ export class CmdProgram {
 		this.logV(`Working directory set to ${workingDir}.`);
 
 		this.logV(`Validating intermediate form.`);
-		let validatedQuery = this.createQueryValidator(defaultFrom).validate(
-			parsedQuery
-		);
+		let validatedQuery =
+			this.createQueryValidator(defaultFrom).validate(parsedQuery);
 		this.logV(JSON.stringify(validatedQuery, null, 4));
 
 		//run the query

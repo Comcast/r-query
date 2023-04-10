@@ -3,7 +3,10 @@ import { ICfgToken, ICfgRule } from "../../models/contextFreeGrammar";
 
 describe("TyrantContextFreeGrammar", () => {
 	it("should parse with callback in simple x{check}y grammar", () => {
-		const tokens: ICfgToken[] = [["X", /^x$/], ["Y", /^y$/]];
+		const tokens: ICfgToken[] = [
+			["X", /^x$/],
+			["Y", /^y$/]
+		];
 		const rules: ICfgRule[] = [["xy_rule", "X {xy_rule}? Y"]];
 		const initialize = () => 0;
 		const callback: [
@@ -12,7 +15,8 @@ describe("TyrantContextFreeGrammar", () => {
 		][] = [
 			[
 				rules[0][0],
-				(state: number, items: string | string[]) => state + items.length / 2
+				(state: number, items: string | string[]) =>
+					state + items.length / 2
 			]
 		];
 
@@ -73,7 +77,10 @@ describe("TyrantContextFreeGrammar", () => {
 		];
 		const rules: ICfgRule[] = [
 			["left_right_pair", "LP NOT_P* {left_right_pair}? NOT_P* RP"],
-			["bad_expect", "EXPECT WTSP? {left_right_pair} WTSP? [SEMICOLON|RB]"]
+			[
+				"bad_expect",
+				"EXPECT WTSP? {left_right_pair} WTSP? [SEMICOLON|RB]"
+			]
 		];
 
 		const LEFT_RIGHT_PAIR_TEST_CASES = [

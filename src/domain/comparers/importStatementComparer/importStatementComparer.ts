@@ -34,11 +34,13 @@ export class ImportStatementComparer extends BaseComparer<
 		},
 		{
 			name: "size_less_than_equal_to",
-			tokenRegularLanguage: /size(_|-)?(<=|less(_|-)?than(_|-)?equal(_|-)?to)/i
+			tokenRegularLanguage:
+				/size(_|-)?(<=|less(_|-)?than(_|-)?equal(_|-)?to)/i
 		},
 		{
 			name: "size_greater_than_equal_to",
-			tokenRegularLanguage: /size(_|-)?(>=|greater(_|-)?than(_|-)?equal(_|-)?to)/i
+			tokenRegularLanguage:
+				/size(_|-)?(>=|greater(_|-)?than(_|-)?equal(_|-)?to)/i
 		}
 	];
 
@@ -98,7 +100,8 @@ export class ImportStatementComparer extends BaseComparer<
 
 		return !!leftHand.find(impStmt => {
 			return (
-				impStmt.fromSource === fromName && impStmt.moduleName === importName
+				impStmt.fromSource === fromName &&
+				impStmt.moduleName === importName
 			);
 		});
 	}

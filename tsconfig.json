@@ -63,7 +63,8 @@
 		// "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
 
 		/* Advanced Options */
-		"forceConsistentCasingInFileNames": false /* Disallow inconsistently-cased references to the same file. */
+		"forceConsistentCasingInFileNames": false /* Disallow inconsistently-cased references to the same file. */,
+		"useUnknownInCatchVariables": true
 	},
 	"include": ["src", "test.ts", "src/query-repo.ts"],
 	"exclude": ["cmdUtility", "runners", "node_modules", "dist", "cmdDist"]

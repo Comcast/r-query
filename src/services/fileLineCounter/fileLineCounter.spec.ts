@@ -5,7 +5,9 @@ describe("FileLineCounter", () => {
 	let lineCounter: CompositeFileLineCounter;
 
 	beforeEach(() => {
-		lineCounter = new CompositeFileLineCounter([new DefaultFileLineCounter()]);
+		lineCounter = new CompositeFileLineCounter([
+			new DefaultFileLineCounter()
+		]);
 	});
 
 	it("should reject invalid constructor input", () => {

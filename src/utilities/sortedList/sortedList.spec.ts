@@ -73,7 +73,10 @@ describe("SortedList", () => {
 		const zItems = expected.filter(tc => tc.name === "z").sort(compare);
 
 		const zFound = list
-			.filter({ name: "z", value: -Infinity }, { name: "z", value: Infinity })
+			.filter(
+				{ name: "z", value: -Infinity },
+				{ name: "z", value: Infinity }
+			)
 			.toArray()
 			.sort(compare);
 		expect(zFound.length).toBe(zItems.length);
@@ -82,7 +85,10 @@ describe("SortedList", () => {
 		const qItems = expected.filter(tc => tc.name === "q").sort(compare);
 
 		const qFound = list
-			.filter({ name: "q", value: -Infinity }, { name: "q", value: Infinity })
+			.filter(
+				{ name: "q", value: -Infinity },
+				{ name: "q", value: Infinity }
+			)
 			.toArray()
 			.sort(compare);
 		expect(qFound.length).toBe(qItems.length);
@@ -91,7 +97,10 @@ describe("SortedList", () => {
 		const cItems = expected.filter(tc => tc.name === "c").sort(compare);
 
 		const cFound = list
-			.filter({ name: "c", value: -Infinity }, { name: "c", value: Infinity })
+			.filter(
+				{ name: "c", value: -Infinity },
+				{ name: "c", value: Infinity }
+			)
 			.toArray()
 			.sort(compare);
 		expect(cFound.length).toBe(cItems.length);

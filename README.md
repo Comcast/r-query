@@ -1,6 +1,15 @@
 # R-Query
 R-Query is a library, and a CLI, which allows querying over one or more repositories' source code via SQL-like syntax name *RQL*. This can be integrated into a typescript project and/or run as a standalone command line tool.
 
+To install:
+`npm i repository-query -g`
+
+To use the command-line version after installing:
+`query-repo "<statement>"`
+
+For example:
+`query-repo "Select fileName From * Where fileContents contains 'something'"`
+
 ## Query Structure
 The following context free grammar summarizes the query syntax:
 ``` sql
@@ -39,9 +48,11 @@ The type definition for file_import_statements:
     "moduleAlias": "<name of module if it was aliased, otherwise original name of module>",
     "fromSource": "<name of the source the file came from>"
 }]
+```
 
 The type definition for file_export_statements:
 
+```json
 [{
     "name": "<export name>",
     "type": "<type declaration of item>"
@@ -60,7 +71,7 @@ The "From" field accepts the following types of sources:
 
 A comma separated list can be used to include multiple repos and can mix and match names and regular expressions.
 
-Regarding selectable repositories, the command line version of the tool behaves as follows:
+Regarding selectable repositories, the command-line version of the tool behaves as follows:
 * If a "From" statement is specified, the current working directory will be treated as the workspace and all 1st level child directories will be treated as the repositories.
 * If a "From" statement is ommited entirely, the current working directory will be treated as the repository to which the query will be executed upon
 

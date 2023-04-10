@@ -133,7 +133,10 @@ export class QueryExecutor implements IQueryExecutor {
 				}
 			})
 			.catch(err => {
-				throw new QueryProcessorError(`Error in querying repository`, err);
+				throw new QueryProcessorError(
+					`Error in querying repository`,
+					err
+				);
 			});
 
 		return rows;
@@ -162,7 +165,9 @@ export class QueryExecutor implements IQueryExecutor {
 				query.where
 			).catch(err => {
 				throw new QueryProcessorError(
-					`Error in evaluation of select condition: ${query.where.join(" ")}`,
+					`Error in evaluation of select condition: ${query.where.join(
+						" "
+					)}`,
 					err
 				);
 			});
@@ -174,7 +179,10 @@ export class QueryExecutor implements IQueryExecutor {
 		//if conditions pass, create the result and return
 		for (let i = 0; i < query.select.length; i++) {
 			const qs = query.select[i];
-			row[qs.fieldAlias] = await this.getFileValue(fileContext, qs.fieldName);
+			row[qs.fieldAlias] = await this.getFileValue(
+				fileContext,
+				qs.fieldName
+			);
 		}
 
 		return row;
@@ -199,7 +207,10 @@ export class QueryExecutor implements IQueryExecutor {
 	 * Otherwise, get value and cache it
 	 * @param fieldName
 	 */
-	private async getFileValue(fileContext, fieldName: string): Promise<string> {
+	private async getFileValue(
+		fileContext,
+		fieldName: string
+	): Promise<string> {
 		if (typeof fileContext[fieldName] === "undefined") {
 			switch (fieldName) {
 				case FIELD_TYPES_DICT.file_name_extension.fieldName:
@@ -240,36 +251,44 @@ export class QueryExecutor implements IQueryExecutor {
 							FIELD_TYPES_DICT.file_contents.fieldName
 						)
 					);
-					fileContext[FIELD_TYPES_DICT.file_import_statements.fieldName] =
-						fileContext["_parsed_file"].imports;
-					fileContext[FIELD_TYPES_DICT.file_export_statements.fieldName] =
-						fileContext["_parsed_file"].exports;
+					fileContext[
+						FIELD_TYPES_DICT.file_import_statements.fieldName
+					] = fileContext["_parsed_file"].imports;
+					fileContext[
+						FIELD_TYPES_DICT.file_export_statements.fieldName
+					] = fileContext["_parsed_file"].exports;
 					break;
 				case FIELD_TYPES_DICT.file_num_lines.fieldName:
 				case FIELD_TYPES_DICT.file_num_lines_commented.fieldName:
 				case FIELD_TYPES_DICT.file_num_lines_source.fieldName:
 				case FIELD_TYPES_DICT.file_num_lines_todo.fieldName:
-					fileContext["_num_lines"] = await this.fileLineCounter.countLines(
-						await this.getFileValue(
-							fileContext,
-							FIELD_TYPES_DICT.file_name.fieldName
-						),
-						await this.getFileValue(
-							fileContext,
-							FIELD_TYPES_DICT.file_contents.fieldName
-						)
-					);
+					fileContext["_num_lines"] =
+						await this.fileLineCounter.countLines(
+							await this.getFileValue(
+								fileContext,
+								FIELD_TYPES_DICT.file_name.fieldName
+							),
+							await this.getFileValue(
+								fileContext,
+								FIELD_TYPES_DICT.file_contents.fieldName
+							)
+						);
 					fileContext[FIELD_TYPES_DICT.file_num_lines.fieldName] =
 						fileContext["_num_lines"].physical;
-					fileContext[FIELD_TYPES_DICT.file_num_lines_source.fieldName] =
-						fileContext["_num_lines"].source;
-					fileContext[FIELD_TYPES_DICT.file_num_lines_commented.fieldName] =
-						fileContext["_num_lines"].comment;
-					fileContext[FIELD_TYPES_DICT.file_num_lines_todo.fieldName] =
-						fileContext["_num_lines"].todo;
+					fileContext[
+						FIELD_TYPES_DICT.file_num_lines_source.fieldName
+					] = fileContext["_num_lines"].source;
+					fileContext[
+						FIELD_TYPES_DICT.file_num_lines_commented.fieldName
+					] = fileContext["_num_lines"].comment;
+					fileContext[
+						FIELD_TYPES_DICT.file_num_lines_todo.fieldName
+					] = fileContext["_num_lines"].todo;
 					break;
 				default:
-					throw new QueryProcessorError(`Unknown file field name ${fieldName}`);
+					throw new QueryProcessorError(
+						`Unknown file field name ${fieldName}`
+					);
 			}
 		}
 
@@ -315,14 +334,15 @@ export class QueryExecutor implements IQueryExecutor {
 							err
 						);
 					});
-					return this.evaluateSingleSelectCondition(fieldValue, comp).catch(
-						err => {
-							throw new QueryProcessorError(
-								`Cannot evaluate condition for field ${comp.field}`,
-								err
-							);
-						}
-					);
+					return this.evaluateSingleSelectCondition(
+						fieldValue,
+						comp
+					).catch(err => {
+						throw new QueryProcessorError(
+							`Cannot evaluate condition for field ${comp.field}`,
+							err
+						);
+					});
 				};
 			}
 			return expr;
@@ -334,7 +354,10 @@ export class QueryExecutor implements IQueryExecutor {
 		}
 
 		return this.asyncBooleanEvaluator.evaluate(conditions).catch(err => {
-			throw new QueryProcessorError(`Error in async boolean evaluation`, err);
+			throw new QueryProcessorError(
+				`Error in async boolean evaluation`,
+				err
+			);
 		});
 	}
 
@@ -417,7 +440,9 @@ export class QueryExecutor implements IQueryExecutor {
 			this.comparers.find(cp => cp.typeName === fieldType.fieldName) ||
 			this.comparers.find(cp => cp.typeName === fieldType.primitiveType);
 		if (!cp) {
-			throw new QueryProcessorError(`Invalid comparison token: ${comparison}`);
+			throw new QueryProcessorError(
+				`Invalid comparison token: ${comparison}`
+			);
 		}
 		return cp.compare(left, right, comparison);
 	}

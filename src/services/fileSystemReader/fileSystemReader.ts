@@ -8,7 +8,10 @@ import { QueryProcessorError } from "../../utilities/queryProcessorError/queryPr
 export class FileSystemReader implements IFileSystemReader {
 	private options;
 
-	constructor(private nodeFs: any, options?: { excludedDirs: Array<string> }) {
+	constructor(
+		private nodeFs: any,
+		options?: { excludedDirs: Array<string> }
+	) {
 		this.options = {
 			excludedDirs: [],
 			numParallel: 5,
@@ -40,12 +43,12 @@ export class FileSystemReader implements IFileSystemReader {
 			}
 			return bf;
 		});
-		return files.filter(file => file.stats.isFile()).map(file => file.filename);
+		return files
+			.filter(file => file.stats.isFile())
+			.map(file => file.filename);
 	}
 
-	iterateFilesInDir(
-		dir: string
-	): IAsyncIterator<{
+	iterateFilesInDir(dir: string): IAsyncIterator<{
 		filename: string;
 		stats: fs.Stats;
 	}> {
@@ -99,7 +102,9 @@ export class FileSystemReader implements IFileSystemReader {
 			index++;
 			if (
 				!stat.isFile() &&
-				this.options.excludedDirs.indexOf(path.basename(currentFile)) === -1
+				this.options.excludedDirs.indexOf(
+					path.basename(currentFile)
+				) === -1
 			) {
 				dirsToBeScanned.push(currentFile);
 				return getNext();
@@ -132,14 +137,20 @@ export class FileSystemReader implements IFileSystemReader {
 
 	statFile(filepath: string): Promise<fs.Stats> {
 		return this.fsToPromise<fs.Stats>("stat", [filepath]).catch(err => {
-			throw new QueryProcessorError(`Error in stat of file ${filepath}`, err);
+			throw new QueryProcessorError(
+				`Error in stat of file ${filepath}`,
+				err
+			);
 		});
 	}
 
 	readFile(filename: string): Promise<string> {
 		return this.fsToPromise<string>("readFile", [filename, "utf-8"]).catch(
 			err => {
-				throw new QueryProcessorError(`Error reading of file ${filename}`, err);
+				throw new QueryProcessorError(
+					`Error reading of file ${filename}`,
+					err
+				);
 			}
 		);
 	}
@@ -151,7 +162,9 @@ export class FileSystemReader implements IFileSystemReader {
 	async readDir(dir: string): Promise<Array<string>> {
 		const items = await this.fsToPromise<Array<string>>("readdir", [dir]);
 		const itemsFiltered = items.filter(item => {
-			return this.options.excludedDirs.indexOf(path.basename(item)) === -1;
+			return (
+				this.options.excludedDirs.indexOf(path.basename(item)) === -1
+			);
 		});
 		return itemsFiltered;
 	}

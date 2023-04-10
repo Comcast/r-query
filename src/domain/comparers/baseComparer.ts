@@ -2,7 +2,8 @@ import { IComparer } from "../../models/comparer";
 import { QueryProcessorError } from "../../utilities/queryProcessorError/queryProcessorError";
 
 export abstract class BaseComparer<LeftType, RightType>
-	implements IComparer<LeftType, RightType> {
+	implements IComparer<LeftType, RightType>
+{
 	abstract typeName: string;
 	abstract validComparisonTokens: Array<{
 		name: string;
@@ -43,7 +44,7 @@ export abstract class BaseComparer<LeftType, RightType>
 		let comparison;
 		try {
 			comparison = this.doCompare(leftHand, rightHand, comparisonToken);
-		} catch (err) {
+		} catch (err: any) {
 			throw new QueryProcessorError(
 				`Error in comparison: [${leftHand}] ${comparisonToken} [${rightHand}] : ` +
 					err,

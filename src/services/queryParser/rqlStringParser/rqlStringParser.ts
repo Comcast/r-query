@@ -27,7 +27,9 @@ export class RqlStringParser implements IQueryParser<string> {
 
 	constructor(private comparers: Array<IComparer<any, any>>) {
 		this.comparisons = this.comparers
-			.map(cp => cp.validComparisonTokens.map(tk => tk.tokenRegularLanguage))
+			.map(cp =>
+				cp.validComparisonTokens.map(tk => tk.tokenRegularLanguage)
+			)
 			.flat()
 			.filter((token, ind, ar) => ar.indexOf(token) === ind);
 		this.createProcessorGrammar();
@@ -62,9 +64,7 @@ export class RqlStringParser implements IQueryParser<string> {
 	/**
 	 * The context free grammar here is SQL like in nature
 	 */
-	private createProcessorGrammar(): IContextFreeGrammar<
-		IQueryIntermediateForm
-	> {
+	private createProcessorGrammar(): IContextFreeGrammar<IQueryIntermediateForm> {
 		//define terminal symbols
 		//a regular expression is considered a terminal token if it does not invoke other tokens or rules
 		//must be defined in order of most specific accepted regular language to most general accepted regular language
@@ -79,7 +79,10 @@ export class RqlStringParser implements IQueryParser<string> {
 				items: string | string[]
 			) => IQueryIntermediateForm
 		][] = [
-			["FULL_WHERE_STATEMENT_APPLY", this.processWhereStatement.bind(this)],
+			[
+				"FULL_WHERE_STATEMENT_APPLY",
+				this.processWhereStatement.bind(this)
+			],
 			["FROM_ITEM_APPLY", this.addFromStatement.bind(this)],
 			["SELECT_ITEM_APPLY", this.addSelectStatement.bind(this)]
 		];

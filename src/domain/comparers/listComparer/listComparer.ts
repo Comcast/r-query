@@ -50,11 +50,13 @@ export class ListComparer extends BaseComparer<Array<any>, Array<any>> {
 		},
 		{
 			name: "size_less_than_equal_to",
-			tokenRegularLanguage: /size(_|-)?(<=|less(_|-)?than(_|-)?equal(_|-)?to)/i
+			tokenRegularLanguage:
+				/size(_|-)?(<=|less(_|-)?than(_|-)?equal(_|-)?to)/i
 		},
 		{
 			name: "size_greater_than_equal_to",
-			tokenRegularLanguage: /size(_|-)?(>=|greater(_|-)?than(_|-)?equal(_|-)?to)/i
+			tokenRegularLanguage:
+				/size(_|-)?(>=|greater(_|-)?than(_|-)?equal(_|-)?to)/i
 		}
 	];
 
@@ -72,7 +74,11 @@ export class ListComparer extends BaseComparer<Array<any>, Array<any>> {
 				return leftHand.reduce((bool, item) => {
 					return (
 						bool ||
-						this.stringComparer.compare(item, rightHand as string, "equals")
+						this.stringComparer.compare(
+							item,
+							rightHand as string,
+							"equals"
+						)
 					);
 				}, false);
 			case "contains_any":
@@ -96,7 +102,11 @@ export class ListComparer extends BaseComparer<Array<any>, Array<any>> {
 				return leftHand.reduce((bool, item) => {
 					return (
 						bool ||
-						this.stringComparer.compare(item, rightHand as string, "matches")
+						this.stringComparer.compare(
+							item,
+							rightHand as string,
+							"matches"
+						)
 					);
 				}, false);
 			case "matches_any":

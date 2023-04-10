@@ -54,8 +54,16 @@ describe("StringComparer", () => {
 	runComparisonDualTest(
 		"xxyy",
 		"matches_grammar",
-		[["match", "X {match}? Y"], ["X", /^x$/], ["Y", /^y$/]],
-		[["match", "Z {match}? Y"], ["Y", /^y$/], ["Z", /^z$/]]
+		[
+			["match", "X {match}? Y"],
+			["X", /^x$/],
+			["Y", /^y$/]
+		],
+		[
+			["match", "Z {match}? Y"],
+			["Y", /^y$/],
+			["Z", /^z$/]
+		]
 	);
 
 	function runComparisonDualTest(

@@ -41,7 +41,8 @@ export const FIELD_TYPES_DICT = {
 	},
 	file_num_lines_commented: {
 		fieldName: "file_num_lines_commented",
-		fieldNameRegularLangugage: /^file(-|_)?num(-|_)?lines(-|_)?comment[ed|s]$/i,
+		fieldNameRegularLangugage:
+			/^file(-|_)?num(-|_)?lines(-|_)?comment[ed|s]$/i,
 		primitiveType: "number"
 	},
 	file_num_lines_source: {

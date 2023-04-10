@@ -13,9 +13,9 @@
 			"fileContents": "throw new Error('not implemented')"
 		}
 	],
-	"repo-test": [
+	"repo-test-single": [
 		{
-			"fileName": "T:\\repo-test\\config.json",
+			"fileName": "T:\\repo-test-single\\config.json",
 			"fileContents": "{\"dependencies\":{}}"
 		}
 	],

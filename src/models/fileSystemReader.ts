@@ -6,9 +6,7 @@ export interface IFileSystemReader {
 
 	listFilesInDir(directory: string): Promise<Array<string>>;
 
-	iterateFilesInDir(
-		directory: string
-	): IAsyncIterator<{
+	iterateFilesInDir(directory: string): IAsyncIterator<{
 		filename: string;
 		stats: fs.Stats;
 	}>;

@@ -8,7 +8,8 @@ import { tyrant } from "tyranny";
 import { QueryProcessorError } from "../queryProcessorError/queryProcessorError";
 
 export class TyrantContextFreeGrammar<ParseReturnType>
-	implements IContextFreeGrammar<ParseReturnType> {
+	implements IContextFreeGrammar<ParseReturnType>
+{
 	constructor(
 		public readonly tokens: ICfgToken[],
 		public readonly rules: ICfgRule[],
@@ -16,7 +17,10 @@ export class TyrantContextFreeGrammar<ParseReturnType>
 		private readonly parseSetup: () => ParseReturnType,
 		private readonly parseCallbacks: [
 			string,
-			(state: ParseReturnType, items: string | string[]) => ParseReturnType
+			(
+				state: ParseReturnType,
+				items: string | string[]
+			) => ParseReturnType
 		][]
 	) {
 		this.validateTokensRules(this.tokens, this.rules);
@@ -56,7 +60,9 @@ export class TyrantContextFreeGrammar<ParseReturnType>
 				if (splitNames[index]) {
 					firstRuleToken = splitNames[index];
 				} else {
-					throw new Error(`Unknown error while processing substring matches!`);
+					throw new Error(
+						`Unknown error while processing substring matches!`
+					);
 				}
 			}
 
@@ -76,7 +82,9 @@ export class TyrantContextFreeGrammar<ParseReturnType>
 
 		let startTokens = [];
 		if (startTokenName.indexOf("|") > -1) {
-			startTokens = startTokenName.replace(/\(|\[|\)|\]|\s]/g, "").split("|");
+			startTokens = startTokenName
+				.replace(/\(|\[|\)|\]|\s]/g, "")
+				.split("|");
 		} else {
 			startTokens = [startTokenName];
 		}
@@ -117,12 +125,17 @@ export class TyrantContextFreeGrammar<ParseReturnType>
 				if (index > -1) {
 					lastRuleToken = splitNames[index];
 				} else {
-					throw new Error(`Unknown error while processing substring matches!`);
+					throw new Error(
+						`Unknown error while processing substring matches!`
+					);
 				}
 			}
 
 			if (lastRuleToken.indexOf("{") === 0) {
-				endRuleName = lastRuleToken.substring(1, lastRuleToken.indexOf("}"));
+				endRuleName = lastRuleToken.substring(
+					1,
+					lastRuleToken.indexOf("}")
+				);
 				if (visitedRuleNames.indexOf(endRuleName) === -1) {
 					visitedRuleNames.push("{" + endRuleName + "}");
 				}

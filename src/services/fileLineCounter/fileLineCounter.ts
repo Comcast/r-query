@@ -23,9 +23,12 @@ export class CompositeFileLineCounter implements IFileLineCounter {
 					fileName,
 					fileContents
 				);
-			} catch (err) {
+			} catch (err: any) {
 				if (lastErr) {
-					lastErr = new QueryProcessorError(err.message || err.toString(), err);
+					lastErr = new QueryProcessorError(
+						err.message || err.toString(),
+						err
+					);
 				} else {
 					lastErr = err;
 				}

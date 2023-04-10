@@ -18,10 +18,7 @@ export class TypescriptFileParser implements IFileParser {
 		fileName: string,
 		fileContents: string
 	): Promise<IFileParsedData> {
-		const ext = fileName
-			.split(".")
-			.pop()
-			.toLowerCase();
+		const ext = fileName.split(".").pop().toLowerCase();
 
 		if (ext !== "ts") {
 			throw new QueryProcessorError(
@@ -62,7 +59,8 @@ export class TypescriptFileParser implements IFileParser {
 			.map(dc => {
 				let type = dc.type;
 				if (!type) {
-					const cnName = (dc.constructor && dc.constructor.name) || "";
+					const cnName =
+						(dc.constructor && dc.constructor.name) || "";
 					if (cnName.indexOf("Interface") > -1) {
 						type = "interface";
 					} else if (cnName.indexOf("Class") > -1) {

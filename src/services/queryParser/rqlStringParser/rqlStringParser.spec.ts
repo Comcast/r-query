@@ -134,8 +134,7 @@ describe("RqlStringParser", () => {
 				})
 			},
 			{
-				input:
-					"Select fileContents From repo-e2e-library Where filename = 'package.json'",
+				input: "Select fileContents From repo-e2e-library Where filename = 'package.json'",
 				expected: new QueryIntermediateForm({
 					select: [
 						{
